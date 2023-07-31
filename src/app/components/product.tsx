@@ -6,7 +6,10 @@ export interface ProductProps {
 
 export function Product({ children }: ProductProps) {
   return (
-    <div>
+    <div
+      className='keen-slider__slide group overflow-hidden bg-gradient-to-b from-greenGradient to-blueGradient rounded-lg 
+      cursor-pointer relative flex items-center justify-center'
+    >
       {children}
     </div>
   );

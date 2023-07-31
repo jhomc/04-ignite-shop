@@ -23,9 +23,19 @@ module.exports = {
 
         'green500': '#00875f',
         'green300': '#00b37e',
+
+        'greenGradient': '#1ea483',
+        'blueGradient': '#7465d4',
+        'blackGradient': 'rgba(0, 0, 0, 0.6)'
       },
       maxWidth: {
         'homeCalc': 'calc(100vw - ((100vw - 1180px) / 2))'
+      },
+      fontSize: {
+        'md': '1.125rem',
+        'lg': '1.25rem',
+        'xl': '1.5rem',
+        '2xl': '2rem',
       }
     },
 
