@@ -5,37 +5,8 @@ import { Product } from "./components/product";
 import camiseta1 from "../assets/camisetas/camisa1.png"
 import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
-
-interface Product {
-  id: string;
-  name: string;
-  imageUrl: string;
-  price: number;
-}
-
-interface ProductsList {
-  products: Product[]
-}
-
-
-async function getProducts(): Promise<ProductsList> {
-  const response = await stripe.products.list({
-    expand: ['data.default_price']
-  })
-
-  const products = response.data.map(product => {
-    const price = product.default_price as Stripe.Price
-
-    return {
-      id: product.id,
-      name: product.name,
-      imageUrl: product.images[0],
-      price: price.unit_amount! / 100,
-    }
-  })
-
-  return { products }
-}
+import { cache } from "react";
+import { getProducts } from "@/utils/getProducts";
 
 
 export default async function Home() {
@@ -53,7 +24,7 @@ export default async function Home() {
             translate-y-[110%] opacity-0 transition-all ease-in-out delay-200 group-hover:translate-y-[0%] group-hover:opacity-100 "
             >
               <strong className="text-lg">{product.name}</strong>
-              <span className="text-xl font-bold text-green300">R$ {product.price}</span>
+              <span className="text-xl font-bold text-green300">{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
             </footer>
           </Product>
         )
