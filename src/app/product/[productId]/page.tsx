@@ -1,9 +1,22 @@
+import { ProductContainer } from "@/components/productContainer"
+import { ProductDetails } from "@/components/productDetails"
+import { getProductById } from "@/utils/getProducts"
+import Image from "next/image"
+
 interface ProductProps {
   params: {
     productId: string
   }
 }
 
-export default function Product({ params }: ProductProps) {
-  return <p>{params.productId}</p>
+export default async function Product({ params }: ProductProps) {
+  const product = await getProductById(params.productId)
+  return (
+    <ProductContainer>
+      <div className="w-100% max-w-[576px] bg bg-gradient-to-b from-greenGradient to-blueGradient rounded-lg p-1 flex items-center justify-center h-productCalc">
+        <Image className="object-cover" src={product.imageUrl} width={680} height={480} alt="camiseta" />
+      </div>
+      <ProductDetails product={product} />
+    </ProductContainer>
+  )
 }

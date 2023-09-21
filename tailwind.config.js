@@ -31,6 +31,9 @@ module.exports = {
       maxWidth: {
         'homeCalc': 'calc(100vw - ((100vw - 1180px) / 2))'
       },
+      height: {
+        'productCalc': 'calc(656px - 0.5rem)'
+      },
       fontSize: {
         'md': '1.125rem',
         'lg': '1.25rem',

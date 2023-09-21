@@ -2,7 +2,7 @@ import { stripe } from "@/lib/stripe";
 import { cache } from "react";
 import Stripe from "stripe";
 
-interface Product {
+export interface Product {
   id: string;
   name: string;
   imageUrl: string;
@@ -32,4 +32,21 @@ export const getProducts = cache(async () => {
   })
 
   return { products }
+})
+
+export const getProductById = cache(async (id: string) => {
+  const product = await stripe.products.retrieve(id, {
+    expand: ['default_price']
+  })
+
+  const price = product.default_price as Stripe.Price
+
+  return {
+
+    id: product.id,
+    name: product.name,
+    imageUrl: product.images[0],
+    price: price.unit_amount! / 100,
+    description: product.description
+  }
 })

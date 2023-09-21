@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { HomeContainer } from "./components/home";
-import { Product } from "./components/product";
+import { HomeContainer } from "../components/home";
+import { Product } from "../components/product";
 
 import camiseta1 from "../assets/camisetas/camisa1.png"
 import { stripe } from "@/lib/stripe";
