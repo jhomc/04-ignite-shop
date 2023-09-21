@@ -7,6 +7,7 @@ import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
 import { cache } from "react";
 import { getProducts } from "@/utils/getProducts";
+import Link from "next/link";
 
 
 export default async function Home() {
@@ -16,17 +17,19 @@ export default async function Home() {
     <HomeContainer>
       {products.map(product => {
         return (
-          <Product key={product.id}>
-            <Image src={product.imageUrl} width={520} height={480} alt='camiseta' className="object-cover" />
+          <Link key={product.id} href={`/product/${encodeURIComponent(product.id)}`}>
+            <Product >
+              <Image src={product.imageUrl} width={520} height={480} alt='camiseta' className="object-cover" />
 
-            <footer
-              className="absolute bottom-1 left-1 right-1 p-8 rounded-md flex items-center justify-between bg-blackGradient
-            translate-y-[110%] opacity-0 transition-all ease-in-out delay-200 group-hover:translate-y-[0%] group-hover:opacity-100 "
-            >
-              <strong className="text-lg">{product.name}</strong>
-              <span className="text-xl font-bold text-green300">{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
-            </footer>
-          </Product>
+              <footer
+                className="absolute bottom-1 left-1 right-1 p-8 rounded-md flex items-center justify-between bg-blackGradient
+              translate-y-[110%] opacity-0 transition-all ease-in-out delay-200 group-hover:translate-y-[0%] group-hover:opacity-100 "
+              >
+                <strong className="text-lg">{product.name}</strong>
+                <span className="text-xl font-bold text-green300">{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+              </footer>
+            </Product>
+          </Link>
         )
       })}
     </HomeContainer>
