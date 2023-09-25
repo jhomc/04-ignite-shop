@@ -42,7 +42,6 @@ export const getProductById = cache(async (id: string) => {
   const price = product.default_price as Stripe.Price
 
   return {
-
     id: product.id,
     name: product.name,
     imageUrl: product.images[0],

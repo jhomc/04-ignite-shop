@@ -1,6 +1,6 @@
 import { ProductContainer } from "@/components/productContainer"
 import { ProductDetails } from "@/components/productDetails"
-import { getProductById } from "@/utils/getProducts"
+import { getProductById, getProducts } from "@/utils/getProducts"
 import Image from "next/image"
 
 interface ProductProps {
@@ -8,6 +8,12 @@ interface ProductProps {
     productId: string
   }
 }
+
+export async function generateStaticParams({ params: { productId } }: ProductProps) {
+  const { products } = await getProducts()
+  return products.map(product => productId == product.id)
+}
+
 
 export default async function Product({ params }: ProductProps) {
   const product = await getProductById(params.productId)

@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true} className={`bg-gray900 text-white flex min-h-screen items-start justify-center flex-col  ${roboto.className}`}>
         <header className='px-8 w-full max-w-[1244px] mx-auto'>
-          <Image src={logoImg} alt='' className='mb-4' />
+          <Image src={logoImg} alt='' className='mb-8' />
         </header>
         {children}
       </body>
