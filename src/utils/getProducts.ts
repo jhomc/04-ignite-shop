@@ -46,6 +46,7 @@ export const getProductById = cache(async (id: string) => {
     name: product.name,
     imageUrl: product.images[0],
     price: price.unit_amount! / 100,
-    description: product.description
+    description: product.description,
+    defaultPriceId: price.id
   }
 })
