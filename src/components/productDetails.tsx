@@ -25,6 +25,7 @@ export function ProductDetails({ product }: ProductProps) {
       window.location.href = checkoutUrl
 
     } catch (err) {
+      console.log(err)
       alert('Falha ao redirecionar checkout')
     }
   }
