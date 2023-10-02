@@ -16,7 +16,7 @@ interface ProductsList {
 export const revalidate = 60
 
 export const getProducts = cache(async () => {
-  const response = await stripe.products.list({
+  const response = await stripe!.products.list({
     expand: ['data.default_price']
   })
 
@@ -35,7 +35,7 @@ export const getProducts = cache(async () => {
 })
 
 export const getProductById = cache(async (id: string) => {
-  const product = await stripe.products.retrieve(id, {
+  const product = await stripe!.products.retrieve(id, {
     expand: ['default_price']
   })
 
@@ -52,7 +52,7 @@ export const getProductById = cache(async (id: string) => {
 })
 
 export const getProductBySessionId = async (sessionId: string) => {
-  const session = await stripe.checkout.sessions.retrieve(sessionId, {
+  const session = await stripe!.checkout.sessions.retrieve(sessionId, {
     expand: ['line_items', 'line_items.data.price.product']
   })
 
