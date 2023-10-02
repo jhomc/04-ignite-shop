@@ -1,6 +1,6 @@
 'use client'
 import { Product } from "@/utils/getProducts";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 interface ProductProps {
   product: {
@@ -24,8 +24,9 @@ export function ProductDetails({ product }: ProductProps) {
       const { checkoutUrl } = response.data
       window.location.href = checkoutUrl
 
-    } catch (err) {
+    } catch (err: any) {
       console.log(err)
+      console.error(err.response.data)
       alert('Falha ao redirecionar checkout')
     }
   }
