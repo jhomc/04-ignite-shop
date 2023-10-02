@@ -16,7 +16,6 @@ interface ProductProps {
 
 export function ProductDetails({ product }: ProductProps) {
   async function handleBuyProduct() {
-    console.log(product.defaultPriceId)
     try {
       const response = await axios.post('/api/checkoutSession', {
         priceId: product.defaultPriceId

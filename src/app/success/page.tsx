@@ -1,8 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getProductBySessionId } from "@/utils/getProducts";
+import { redirect } from "next/navigation";
 
 export default async function Success({ searchParams }: { searchParams: { session_id: string } }) {
+  if (!searchParams.session_id) {
+    redirect('/')
+  }
+
   const data = await getProductBySessionId(searchParams.session_id)
   return (
     <main className="flex flex-col items-center content-center my-0 mx-auto h-[656px]">
